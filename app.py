@@ -31,7 +31,7 @@ user_service = UserService(db)
 
 
 settings = {
-    "sourceBasePath": "http://chnemo.asuscomm.com/",
+    "sourceBasePath": "http://192.168.1.93/",
 }
 
 book_service = BookService(db, user_service)
