@@ -1,7 +1,7 @@
 import json
 import requests
 
-PHP_URL = "http://chnemo.asuscomm.com/newbooks"
+PHP_URL = "http://192.168.1.93/newbooks"
 PY_URL = "http://192.168.1.93/papi"
 
 
