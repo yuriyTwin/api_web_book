@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "authorId",
+      "orderId",
+      "author",
+      "cycleId",
+      "cycle",
+      "name",
+      "origImg",
+      "img",
+      "readerId",
+      "reader",
+      "ganreId",
+      "ganre",
+      "duration",
+      "opened"
+    ],
+    "properties": {
+      "id": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "authorId": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "orderId": {
+	"anyOf": [{
+      		"type": "integer",
+      		"minimum": 0
+    	},
+    	{
+      		"type": "null"
+    	}]
+      },
+      "author": {
+        "type": "string",
+        "minLength": 1
+      },
+      "cycleId": {
+        "type": "integer",
+        "minimum": -1
+      },
+      "cycle": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "name": {
+        "type": "string",
+        "minLength": 1
+      },
+      "origImg": {
+        "type": "string",
+        "format": "uri"
+      },
+      "img": {
+        "type": "string",
+        "minLength": 1
+      },
+      "readerId": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "reader": {
+        "type": "string",
+        "minLength": 1
+      },
+      "ganreId": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "ganre": {
+        "type": "string",
+        "minLength": 1
+      },
+      "duration": {
+        "type": "string"
+      },
+      "opened": {
+        "type": "integer",
+        "enum": [
+          0,
+          1
+        ]
+      }
+    }
+  }
+}

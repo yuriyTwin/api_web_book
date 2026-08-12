@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+
+  "type": "object",
+
+  "required": [
+    "list",
+    "lastPlay"
+  ],
+
+  "properties": {
+
+    "list": {
+      "type": "array",
+
+      "items": {
+        "type": "object",
+
+        "required": [
+          "mp3",
+          "title",
+          "poster",
+          "oga",
+          "artist"
+        ],
+
+        "properties": {
+
+          "mp3": {
+            "type": "string",
+            "minLength": 1
+          },
+
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+
+          "poster": {
+            "type": "string"
+          },
+
+          "oga": {
+            "type": "string"
+          },
+
+          "artist": {
+            "type": "string"
+          }
+        }
+      }
+    },
+
+
+    "lastPlay": {
+
+      "type": "object",
+
+      "required": [
+        "bookid",
+        "name",
+        "img",
+        "filenum",
+        "time",
+        "opened"
+      ],
+
+      "properties": {
+
+        "bookid": {
+          "type": "integer",
+          "minimum": 1
+        },
+
+        "name": {
+          "type": "string"
+        },
+
+        "img": {
+          "type": "string"
+        },
+
+        "filenum": {
+          "type": "integer",
+          "minimum": 0
+        },
+
+        "time": {
+          "type": "number",
+          "minimum": 0
+        },
+
+        "opened": {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        }
+      }
+    }
+  }
+}
