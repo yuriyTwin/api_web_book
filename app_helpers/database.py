@@ -1,13 +1,21 @@
+from pathlib import Path
 from sqlalchemy import create_engine, event, text
 from sqlalchemy.orm import Session
+from .sql_loader import SqlLoader
 
 
 class Database:
 
-    def __init__(self, main_db, sql_loader, attachments=None):
-
-        self.loader = sql_loader
-
+    def __init__(self, main_db, sql_dir, attachments=None):
+        """
+        Args:
+            main_db: путь к основной БД
+            sql_dir: директория с SQL шаблонами
+            attachments: словарь подключаемых БД
+        """
+        # Инициализируем лоадер здесь
+        self.loader = SqlLoader(sql_dir)
+        
         self.engine = create_engine(
             f"sqlite:///{main_db}",
             future=True
@@ -44,74 +52,3 @@ class Database:
                 )
 
             cursor.close()
-
-#    def query(self, file, sql_args=None, params=None):
-#
-#        sql = self.loader.render(
-#            file,
-#            **(sql_args or {})
-#        )
-
-
-#        with Session(self.engine) as session:
-
-#            result = session.execute(
-#                text(sql),
-#                params or {}
-#            )
-
-#            rows = result.mappings().all()
-
-#            return [dict(row) for row in rows]
-
-#    def query_one(self, file, sql_args=None, params=None):
-
-#        sql = self.loader.render(
-#            file,
-#            **(sql_args or {})
-#        )
-
-#        with Session(self.engine) as session:
-
-#            result = session.execute(
-#                text(sql),
-#                params or {}
-#            )
-
-#            row = result.mappings().first()
-
-#            return dict(row) if row else None
-
-#    def scalar(self, file, sql_args=None, params=None):
-
-#        sql = self.loader.render(
-#            file,
-#            **(sql_args or {})
-#        )
-
-
-#        with Session(self.engine) as session:
-
-#            result = session.execute(
-#                text(sql),
-#                params or {}
-#            )
-
-#            return result.scalar()
-
-#    def execute(self, file, sql_args=None, params=None):
-
-#        sql = self.loader.render(
-#            file,
-#            **(sql_args or {})
-#        )
-
-
-#        with Session(self.engine) as session:
-
-#            session.execute(
-#                text(sql),
-#                params or {}
-#            )
-
-#            session.commit()

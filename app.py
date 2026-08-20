@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 
 from app_helpers.database import Database
 from app_helpers.repositories import Repositories
-from app_helpers.sql_loader import SqlLoader
 from services.user_service import UserService
 from services.book_service import BookService
 
@@ -10,17 +9,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 
-print("BASE_DIR =", BASE_DIR)
-print("SQL_DIR =", BASE_DIR / "sql")
-
-
 app = Flask(__name__)
-
-loader = SqlLoader(BASE_DIR / "sql")
 
 database = Database(
     main_db="/mnt/disk2/html/newbooks/databases/books.sqlite",
-    sql_loader=loader,
+    sql_dir=BASE_DIR / "sql",
     attachments={
         "users_db":"/mnt/disk2/html/newbooks/databases/users.sqlite"
     }
