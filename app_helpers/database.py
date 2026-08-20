@@ -45,73 +45,73 @@ class Database:
 
             cursor.close()
 
-    def query(self, file, sql_args=None, params=None):
-
-        sql = self.loader.render(
-            file,
-            **(sql_args or {})
-        )
-
-
-        with Session(self.engine) as session:
-
-            result = session.execute(
-                text(sql),
-                params or {}
-            )
-
-            rows = result.mappings().all()
-
-            return [dict(row) for row in rows]
-
-    def query_one(self, file, sql_args=None, params=None):
-
-        sql = self.loader.render(
-            file,
-            **(sql_args or {})
-        )
-
-        with Session(self.engine) as session:
-
-            result = session.execute(
-                text(sql),
-                params or {}
-            )
-
-            row = result.mappings().first()
-
-            return dict(row) if row else None
-
-    def scalar(self, file, sql_args=None, params=None):
-
-        sql = self.loader.render(
-            file,
-            **(sql_args or {})
-        )
+#    def query(self, file, sql_args=None, params=None):
+#
+#        sql = self.loader.render(
+#            file,
+#            **(sql_args or {})
+#        )
 
 
-        with Session(self.engine) as session:
+#        with Session(self.engine) as session:
 
-            result = session.execute(
-                text(sql),
-                params or {}
-            )
+#            result = session.execute(
+#                text(sql),
+#                params or {}
+#            )
 
-            return result.scalar()
+#            rows = result.mappings().all()
 
-    def execute(self, file, sql_args=None, params=None):
+#            return [dict(row) for row in rows]
 
-        sql = self.loader.render(
-            file,
-            **(sql_args or {})
-        )
+#    def query_one(self, file, sql_args=None, params=None):
+
+#        sql = self.loader.render(
+#            file,
+#            **(sql_args or {})
+#        )
+
+#        with Session(self.engine) as session:
+
+#            result = session.execute(
+#                text(sql),
+#                params or {}
+#            )
+
+#            row = result.mappings().first()
+
+#            return dict(row) if row else None
+
+#    def scalar(self, file, sql_args=None, params=None):
+
+#        sql = self.loader.render(
+#            file,
+#            **(sql_args or {})
+#        )
 
 
-        with Session(self.engine) as session:
+#        with Session(self.engine) as session:
 
-            session.execute(
-                text(sql),
-                params or {}
-            )
+#            result = session.execute(
+#                text(sql),
+#                params or {}
+#            )
 
-            session.commit()
+#            return result.scalar()
+
+#    def execute(self, file, sql_args=None, params=None):
+
+#        sql = self.loader.render(
+#            file,
+#            **(sql_args or {})
+#        )
+
+
+#        with Session(self.engine) as session:
+
+#            session.execute(
+#                text(sql),
+#                params or {}
+#            )
+
+#            session.commit()
