@@ -54,10 +54,15 @@ def search():
 @app.route("/getPlayList")
 def get_play_list():
 
-    id = request.args.get("id",int)
+    book_id = request.args.get("id", type=int)
     email = request.args.get("email")
 
-    return book_service.get_play_list(id, email)
+    if book_id is None:
+        return jsonify({
+            "error": "Parameter 'id' is required"
+        }), 400
+
+    return book_service.get_play_list(book_id, email)
 
 
 @app.route("/getCurrentCycleBooks")
