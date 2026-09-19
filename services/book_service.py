@@ -31,10 +31,13 @@ class BookService:
                         "artist": ""
                         })
 
-        last_play = self.user_service.get_last_play(
-            email=email,
-            book_id=book_id
-        )
+        last_play = None
+
+        if email:
+            last_play = self.user_service.get_last_play(
+                email=email,
+                book_id=book_id
+            )
 
         return {
             "list": books,
